@@ -48,10 +48,10 @@ function SphereGeo({
   const api = useRef<RapierRigidBody | null>(null);
 
   useFrame((_state, delta) => {
-    if (!isActive) return;
+    if (!isActive || !api.current) return;
     delta = Math.min(0.1, delta);
     const impulse = vec
-      .copy(api.current!.translation())
+      .copy(api.current.translation())
       .normalize()
       .multiply(
         new THREE.Vector3(
@@ -61,7 +61,7 @@ function SphereGeo({
         )
       );
 
-    api.current?.applyImpulse(impulse, true);
+    api.current.applyImpulse(impulse, true);
   });
 
   return (
@@ -100,7 +100,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   const ref = useRef<RapierRigidBody>(null);
 
   useFrame(({ pointer, viewport }) => {
-    if (!isActive) return;
+    if (!isActive || !ref.current) return;
     const targetVec = vec.lerp(
       new THREE.Vector3(
         (pointer.x * viewport.width) / 2,
@@ -109,7 +109,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
       ),
       0.2
     );
-    ref.current?.setNextKinematicTranslation(targetVec);
+    ref.current.setNextKinematicTranslation(targetVec);
   });
 
   return (
@@ -129,12 +129,16 @@ const TechStack = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const techElem = document.querySelector(".techstack") as HTMLElement;
+      if (!techElem) return;
+      const rect = techElem.getBoundingClientRect();
+      const inView =
+        rect.top <= window.innerHeight && rect.bottom >= 0;
+      setIsActive(inView);
     };
+
+    handleScroll();
+
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
       element.addEventListener("click", () => {

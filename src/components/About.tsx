@@ -6,9 +6,12 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I am a B.Tech Computer Science & Engineering (AI & ML) student at
+          Lovely Professional University. I specialize in building AI vision
+          systems, software applications, and smart IoT automation. Driven by a
+          strong foundation in Python, OpenCV, C/C++, MySQL, and Web
+          Technologies, I solve real-world problems through intelligent
+          systems and hands-on software development.
         </p>
       </div>
     </div>

@@ -40,6 +40,8 @@ const Work = () => {
     ease: "none",
   });
 
+  ScrollTrigger.refresh();
+
   // Clean up (optional, good practice)
   return () => {
     timeline.kill();
@@ -53,21 +55,54 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(6)].map((_value, index) => (
+          {[
+            {
+              num: "01",
+              title: "Traffic Monitoring System",
+              category: "AI / Computer Vision",
+              tools: "Python, OpenCV, OCR, AI Vision, Anomaly Detection",
+              desc: "ANPR plate scanning with OCR, vehicle classification, and anomaly detection across 8+ video feeds.",
+              image: "/images/traffic_monitoring.jpg",
+            },
+            {
+              num: "02",
+              title: "Library Management System",
+              category: "Software & Database",
+              tools: "Python, MySQL, DBMS, Desktop GUI",
+              desc: "Desktop app managing inventory, real-time issue/return status, and student records database.",
+              image: "/images/library_management.jpg",
+            },
+            {
+              num: "03",
+              title: "Smart Agricultural Automation",
+              category: "IoT & Embedded Systems",
+              tools: "Arduino, GSM, Sensors, Motor Control",
+              desc: "Automated crop protection system integrating Arduino, environmental sensors, GSM, and motor control.",
+              image: "/images/smart_agriculture.jpg",
+            },
+            {
+              num: "04",
+              title: "Front-End Web Projects",
+              category: "Web Development",
+              tools: "HTML5, CSS3, JavaScript, UI/UX",
+              desc: "Responsive web projects and interactive interfaces independently built and practiced.",
+              image: "/images/web_development.jpg",
+            },
+          ].map((project, index) => (
             <div className="work-box" key={index}>
               <div className="work-info">
                 <div className="work-title">
-                  <h3>0{index + 1}</h3>
+                  <h3>{project.num}</h3>
 
                   <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
+                    <h4>{project.title}</h4>
+                    <p>{project.category}</p>
                   </div>
                 </div>
                 <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
+                <p>{project.tools}</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <WorkImage image={project.image} alt={project.title} />
             </div>
           ))}
         </div>
