@@ -20,16 +20,6 @@ const Loading = ({ percent }: { percent: number }) => {
   }
 
   useEffect(() => {
-    if (percent >= 70) {
-      const hasReloaded = sessionStorage.getItem("initial_70_reloaded");
-      if (!hasReloaded) {
-        sessionStorage.setItem("initial_70_reloaded", "true");
-        window.location.reload();
-      }
-    }
-  }, [percent]);
-
-  useEffect(() => {
     import("./utils/initialFX").then((module) => {
       if (isLoaded) {
         setClicked(true);
@@ -106,21 +96,22 @@ export const setProgress = (setLoading: (value: number) => void) => {
   let percent: number = 0;
 
   let interval = setInterval(() => {
-    if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
+    if (percent < 90) {
+      let rand = Math.round(Math.random() * 8 + 4);
+      percent = Math.min(90, percent + rand);
       setLoading(percent);
+
+      const isFirstLoad = !sessionStorage.getItem("hasLoadedPortfolio");
+      if (isFirstLoad && percent >= 70) {
+        sessionStorage.setItem("hasLoadedPortfolio", "true");
+        clearInterval(interval);
+        window.location.reload();
+        return;
+      }
     } else {
       clearInterval(interval);
-      interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
-        setLoading(percent);
-        if (percent > 91) {
-          clearInterval(interval);
-        }
-      }, 2000);
     }
-  }, 100);
+  }, 40);
 
   function clear() {
     clearInterval(interval);
@@ -132,13 +123,13 @@ export const setProgress = (setLoading: (value: number) => void) => {
       clearInterval(interval);
       interval = setInterval(() => {
         if (percent < 100) {
-          percent++;
+          percent += 2;
           setLoading(percent);
         } else {
-          resolve(percent);
+          resolve(100);
           clearInterval(interval);
         }
-      }, 2);
+      }, 10);
     });
   }
   return { loaded, percent, clear };
