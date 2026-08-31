@@ -100,14 +100,6 @@ export const setProgress = (setLoading: (value: number) => void) => {
       let rand = Math.round(Math.random() * 8 + 4);
       percent = Math.min(90, percent + rand);
       setLoading(percent);
-
-      const isFirstLoad = !sessionStorage.getItem("hasLoadedPortfolio");
-      if (isFirstLoad && percent >= 70) {
-        sessionStorage.setItem("hasLoadedPortfolio", "true");
-        clearInterval(interval);
-        window.location.reload();
-        return;
-      }
     } else {
       clearInterval(interval);
     }
