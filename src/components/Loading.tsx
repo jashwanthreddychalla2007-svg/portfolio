@@ -17,7 +17,15 @@ const Loading = ({ percent }: { percent: number }) => {
         setIsLoaded(true);
       }, 1000);
     }, 600);
-  }
+  useEffect(() => {
+    if (percent >= 70) {
+      const hasReloaded = sessionStorage.getItem("initial_70_reloaded");
+      if (!hasReloaded) {
+        sessionStorage.setItem("initial_70_reloaded", "true");
+        window.location.reload();
+      }
+    }
+  }, [percent]);
 
   useEffect(() => {
     import("./utils/initialFX").then((module) => {
