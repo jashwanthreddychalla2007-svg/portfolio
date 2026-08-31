@@ -17,6 +17,8 @@ const Loading = ({ percent }: { percent: number }) => {
         setIsLoaded(true);
       }, 1000);
     }, 600);
+  }
+
   useEffect(() => {
     if (percent >= 70) {
       const hasReloaded = sessionStorage.getItem("initial_70_reloaded");
