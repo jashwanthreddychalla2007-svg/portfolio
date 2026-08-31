@@ -4,14 +4,6 @@ const About = () => {
   return (
     <div className="about-section" id="about">
       <div className="about-container-flex">
-        <div className="about-image-wrap">
-          <img
-            src="/images/profile.png"
-            alt="Challa Jashwanth Reddy"
-            className="about-profile-img"
-          />
-          <div className="about-img-glow"></div>
-        </div>
         <div className="about-me">
           <h3 className="title">About Me</h3>
           <p className="para">
@@ -22,6 +14,14 @@ const About = () => {
             Technologies, I solve real-world problems through intelligent
             systems and hands-on software development.
           </p>
+        </div>
+        <div className="about-image-wrap">
+          <img
+            src="/images/profile.png"
+            alt="Challa Jashwanth Reddy"
+            className="about-profile-img"
+          />
+          <div className="about-img-glow"></div>
         </div>
       </div>
     </div>

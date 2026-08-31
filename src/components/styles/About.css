@@ -89,19 +89,30 @@
 @media only screen and (min-width: 1025px) {
   .about-section {
     width: var(--cWidth);
-    justify-content: right;
+    justify-content: flex-end;
     max-width: 1920px;
     height: var(--vh);
     padding: 0px;
     opacity: 1;
   }
+  .about-container-flex {
+    justify-content: flex-end;
+    gap: 40px;
+    width: 70%;
+    margin-left: auto;
+  }
   .about-me {
     padding: 0px;
-    width: 50%;
+    width: 55%;
   }
   .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+    font-size: 1.6vw;
+    line-height: 2.1vw;
+  }
+  .about-image-wrap {
+    width: 270px;
+    height: 380px;
+    z-index: 12;
   }
 }
 @media only screen and (max-width: 900px) {
