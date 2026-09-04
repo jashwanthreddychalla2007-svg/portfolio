@@ -21,7 +21,7 @@ const Career = () => {
               <h3>2025 - NOW</h3>
             </div>
             <p>
-              Specializing in Artificial Intelligence and Machine Learning with a 7.2 CGPA. Coursework covers core OOP, data structures, algorithms, computer vision, and database management systems.
+              Specializing in Artificial Intelligence and Machine Learning with a 7.0 CGPA. Coursework covers core OOP, data structures, algorithms, computer vision, and database management systems.
             </p>
           </div>
           <div className="career-info-box">
